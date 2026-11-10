@@ -45,7 +45,7 @@ import asset25_1 from "@/assets/editorial-25-1600.webp.asset.json";
 import asset26_0 from "@/assets/editorial-26-600.webp.asset.json";
 import asset26_1 from "@/assets/editorial-26-1600.webp.asset.json";
 
-const media: Record<string, { src: string; full: string; width: number; height: number; srcSet?: string }> = {
+const media: Record<string, { src: string; full: string; width: number; height: number; srcSet: string | undefined }> = {
   "/assets/hero_studio_backstage.jpg": { src: asset0_0.url, full: asset0_1.url, width: 768, height: 429, srcSet: `${asset0_0.url} 768w, ${asset0_1.url} 1376w` },
   "/assets/aistudio/file_000000003dbc820ea198ec33619911d3_f0babb44.png": { src: asset1_0.url, full: asset1_0.url, width: 1086, height: 1448, srcSet: undefined },
   "/assets/aistudio/file_0000000001f0820eb004d2587eb5eff6_a5bf1e29.png": { src: asset2_0.url, full: asset2_0.url, width: 1087, height: 1447, srcSet: undefined },
