@@ -1,0 +1,244 @@
+.accordion-gallery {  
+  --ag-accent: #c9a96e;  
+  --ag-overlay: #08080a;  
+  --ag-text: #ffffff;  
+  --ag-gap: clamp(8px, 1.4vw, 16px);  
+  --ag-radius: 8px;  
+  --ag-media-size: 340px;  
+  
+  display: flex !important;  
+  flex-direction: row !important;  
+  gap: var(--ag-gap);  
+  width: 100%;  
+  max-width: 100%;  
+  height: clamp(340px, 42vw, 500px);
+  perspective: 1600px;  
+  perspective-origin: 50% 50%;  
+  user-select: none;
+  overflow: hidden;
+  padding: 4px;
+}  
+  
+.accordion-gallery--vertical {  
+  flex-direction: column !important;  
+}  
+  
+/* High-Fashion Editorial Comp Card Frame */
+.ag-panel {  
+  position: relative;  
+  flex: 1 1 0;  
+  min-width: 0;  
+  min-height: 0;  
+  overflow: hidden;  
+  border-radius: var(--ag-radius);  
+  cursor: pointer;  
+  display: block;  
+  text-decoration: none;  
+  outline: none;  
+  transform-style: preserve-3d;  
+  transform-origin: center center;  
+  background: #0d0d11;  
+  box-shadow: 
+    0 16px 36px -12px rgba(0, 0, 0, 0.95),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);  
+  will-change: flex-grow, transform;  
+  -webkit-tap-highlight-color: transparent;  
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(201, 169, 110, 0.18);
+}  
+
+.ag-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ag-accent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 5;
+}
+  
+.ag-panel--active {
+  border-color: rgba(201, 169, 110, 0.75);
+  box-shadow: 
+    0 24px 50px -10px rgba(0, 0, 0, 0.95), 
+    0 0 25px rgba(201, 169, 110, 0.18),
+    inset 0 1px 0 rgba(201, 169, 110, 0.3);
+}
+
+.ag-panel--active::after {
+  opacity: 1;
+}
+
+.ag-panel:focus-visible {  
+  box-shadow:  
+    0 0 0 2px var(--ag-accent),  
+    0 16px 40px -18px rgba(0, 0, 0, 0.9);  
+}  
+  
+.ag-panel__frame {  
+  position: absolute;  
+  inset: 0;  
+  overflow: hidden;  
+  border-radius: inherit;  
+}  
+  
+.ag-panel__media {  
+  --ag-gray: 0;  
+  --ag-dim: 0.15;  
+  position: absolute;  
+  top: 50%;  
+  left: 50%;  
+  width: var(--ag-media-size);  
+  height: 100%;  
+  filter: grayscale(var(--ag-gray));  
+  will-change: transform, filter;  
+}  
+  
+.accordion-gallery--vertical .ag-panel__media {  
+  width: 100%;  
+  height: var(--ag-media-size);  
+}  
+  
+.ag-panel__media img {  
+  width: 100%;  
+  height: 100%;  
+  object-fit: cover;  
+  display: block;  
+  user-select: none;  
+  -webkit-user-drag: none;  
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}  
+  
+.ag-panel__overlay {  
+  position: absolute;  
+  inset: 0;  
+  pointer-events: none;  
+  background:  
+    linear-gradient(180deg, rgba(10, 10, 12, 0.3) 0%, transparent 35%, color-mix(in srgb, var(--ag-overlay) 92%, transparent) 100%),  
+    color-mix(in srgb, var(--ag-overlay) calc(var(--ag-dim, 0.15) * 100%), transparent);  
+}
+
+/* Editorial Top Index Badge */
+.ag-panel__badge {
+  position: absolute;
+  top: clamp(10px, 2vw, 16px);
+  left: clamp(10px, 2vw, 16px);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  background: rgba(10, 10, 12, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.ag-panel--active .ag-panel__badge {
+  border-color: rgba(201, 169, 110, 0.6);
+  background: rgba(10, 10, 12, 0.85);
+}
+
+.ag-panel__number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--ag-accent);
+}
+
+.ag-panel__tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+}
+  
+/* Bottom Info Label & Typography */
+.ag-panel__label {  
+  position: absolute;  
+  left: clamp(12px, 2.2vw, 22px);  
+  bottom: clamp(14px, 2.5vw, 26px);  
+  right: clamp(12px, 2.2vw, 22px);  
+  display: flex;  
+  flex-direction: column;
+  gap: 6px;  
+  pointer-events: none;  
+  z-index: 3;  
+}  
+  
+.ag-panel__bar {  
+  width: 28px;  
+  height: 1px;  
+  background: var(--ag-accent);  
+  opacity: 0;  
+  box-shadow: 0 0 10px var(--ag-accent);  
+  margin-bottom: 2px;
+}  
+  
+.ag-panel__text {  
+  color: var(--ag-text);  
+  font-family: 'Georgia', serif;  
+  font-weight: 300;  
+  font-size: clamp(0.95rem, 2vw, 1.5rem);  
+  letter-spacing: 0.03em;  
+  line-height: 1.15;
+  white-space: nowrap;  
+  overflow: hidden;  
+  text-overflow: ellipsis;  
+  opacity: 0;  
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);  
+}  
+
+.ag-panel__category {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.55rem, 1.1vw, 0.7rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--ag-accent);
+}
+
+.ag-panel__stats {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.5rem, 0.9vw, 0.65rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 3px;
+}
+
+@media (max-width: 768px) {
+  .ag-panel__badge {
+    padding: 3px 7px;
+  }
+  .ag-panel__number {
+    font-size: 0.55rem;
+  }
+  .ag-panel__tag {
+    display: none;
+  }
+  .ag-panel__text {
+    font-size: clamp(0.8rem, 2.6vw, 1.1rem);
+  }
+  .ag-panel__stats {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {  
+  .ag-panel,  
+  .ag-panel__media {  
+    will-change: auto;  
+  }  
+}  
