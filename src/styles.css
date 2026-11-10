@@ -152,4 +152,11 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
+  /* Typography defaults carried over from the original site */
+  h1 { font-size: var(--text-2xl); font-weight: 500; line-height: 1.5; }
+  h2 { font-size: var(--text-xl); font-weight: 500; line-height: 1.5; }
+  h3 { font-size: var(--text-lg); font-weight: 500; line-height: 1.5; }
+  h4, label, button { font-size: var(--text-base); font-weight: 500; line-height: 1.5; }
+  input { font-size: var(--text-base); font-weight: 400; line-height: 1.5; }
 }
