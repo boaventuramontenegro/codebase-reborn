@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { createPortal } from 'react-dom';
 import './DriftWall.css';
 import { optimizedPhoto } from '@/lib/media';
+import { Photo } from './Photo';
 
 const DEFAULT_ITEMS = [];
 
@@ -56,6 +57,16 @@ const DriftWall = ({
   const [activeId, setActiveId] = useState(null);
   const activeIdRef = useRef(null);
   const [reduced, setReduced] = useState(false);
+  const [nearViewport, setNearViewport] = useState(false);
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setNearViewport(true); observer.disconnect(); }
+    }, { rootMargin: '800px' });
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
 
   // Lightbox & complete pause state
   const [lightboxItem, setLightboxItem] = useState(null);
@@ -266,10 +277,10 @@ const DriftWall = ({
     const isOpenedInLightbox = lightboxItem && lightboxItem.image === item.image;
     const inner = (
       <span className="drift-wall__inner">
-        <img
-          src={optimizedPhoto(item.image).src}
+        <Photo
+          source={item.image}
           alt={item.title ?? ''}
-          loading="lazy"
+          loading={nearViewport ? "eager" : "lazy"}
           decoding="async"
           width={600}
           height={400}
@@ -377,8 +388,9 @@ const DriftWall = ({
             className="relative flex flex-col items-center justify-center max-w-5xl max-h-[92vh] w-auto h-auto cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={optimizedPhoto(lightboxItem.image).full}
+            <Photo
+              source={lightboxItem.image}
+              full
               decoding="async"
               width={optimizedPhoto(lightboxItem.image).width}
               height={optimizedPhoto(lightboxItem.image).height}

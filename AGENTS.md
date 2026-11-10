@@ -32,3 +32,4 @@ use the editor.
 - Keep the existing single-page section navigation for this site; SEO must not split or reorder the user's existing experience.
 - Define page metadata and factual JSON-LD in the browser-safe SEO module; use relative page references until a public domain is known, without inventing institutional facts.
 - Use the optimized media manifest for existing photos while retaining original sources; icon files must be actual public files generated from the official raster logo, never an AI redraw.
+- Render active site photos through Photo with original-source fallback on delivery failure; the opening loader waits only for the first-screen image with a bounded timeout so slow networks never lock the site.

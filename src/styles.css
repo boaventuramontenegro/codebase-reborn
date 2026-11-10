@@ -73,6 +73,8 @@
 }
 
 :root {
+  --opening-background: oklch(0.145 0 0);
+  --opening-gold: oklch(0.75 0.08 80);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
@@ -107,6 +109,13 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
+
+.opening-loader { position: fixed; inset: 0; z-index: 10000; background: var(--opening-background); color: var(--opening-gold); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px; }
+.opening-loader-brand { font-family: 'Cinzel', serif; font-size: 24px; }
+.opening-loader-label { font-family: 'Montserrat', sans-serif; font-size: 12px; }
+.opening-loader-line { width: 120px; height: 2px; background: var(--opening-gold); animation: opening-pulse 1s ease-in-out infinite alternate; }
+@keyframes opening-pulse { from { opacity: .3; transform: scaleX(.4); } to { opacity: 1; transform: scaleX(1); } }
+@media (prefers-reduced-motion: reduce) { .opening-loader-line { animation: none; } }
 
 .dark {
   --background: oklch(0.129 0.042 264.695);
