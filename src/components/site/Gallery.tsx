@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FadeInHeader } from "./SectionHeader";
+// @ts-expect-error untyped JS component
 import DriftWall from "./DriftWall";
 
 const GALLERY_ITEMS = [
