@@ -151,6 +151,8 @@ export function Services() {
                 <ScrollReveal key={index} delay={index * 80} direction="up" duration={600}>
                   <div className="faq-item-container border-b border-white/10 py-5 transition-all duration-300">
                     <button
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-answer-${index}`}
                       onClick={(e) => toggleFaq(e, index)}
                       className="w-full flex items-center justify-between text-left cursor-pointer bg-transparent border-none text-white hover:text-[#C9A96E] transition-colors duration-200 py-1"
                     >
@@ -165,8 +167,7 @@ export function Services() {
                       </span>
                     </button>
 
-                    {isOpen && (
-                      <div className="pt-3 pb-1">
+                      <div id={`faq-answer-${index}`} hidden={!isOpen} className="pt-3 pb-1">
                         <p
                           className="text-white/60 leading-relaxed"
                           style={{ fontSize: "0.9rem", lineHeight: 1.8 }}
@@ -174,7 +175,6 @@ export function Services() {
                           {item.answer}
                         </p>
                       </div>
-                    )}
                   </div>
                 </ScrollReveal>
               );

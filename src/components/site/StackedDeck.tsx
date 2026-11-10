@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './StackedDeck.css';
+import { optimizedPhoto } from '@/lib/media';
 
 export interface ModelTalent {
   id: string;
@@ -219,6 +220,17 @@ export function StackedDeck() {
           return (
             <div
               key={model.id}
+              role="button"
+              tabIndex={0}
+              aria-label={`Ver fotografia ${i + 1} do casting Her Concept`}
+              aria-pressed={isSelected}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedIndex(i);
+                }
+                if (e.key === 'Escape') setSelectedIndex(null);
+              }}
               className={`stacked-card ${isSelected ? 'is-expanded' : ''} ${!isDeckMode && !isSelected ? 'is-side' : ''}`}
               style={{
                 transform: transformStyle,
@@ -239,8 +251,8 @@ export function StackedDeck() {
                 {/* Photo */}
                 <div className="stacked-card__image-wrap">
                   <img
-                    src={model.image}
-                    alt="Her Concept Model Agency - Casting Piracicaba SP"
+                    src={optimizedPhoto(model.image).src}
+                    alt={`Retrato de modelo do casting Her Concept em Piracicaba — fotografia ${i + 1}`}
                     className="stacked-card__image"
                     loading="lazy"
                     decoding="async"

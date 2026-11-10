@@ -9,10 +9,7 @@ import { Testimonials } from "@/components/site/Testimonials";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
-
-const TITLE = "Her Concept Model Agency | Agência de Modelos em Piracicaba - SP";
-const DESC =
-  "A Her Concept é a principal agência de modelos em Piracicaba e São Paulo. Agenciamento de modelos, atrizes e influenciadores, aluguel de estúdio e produções fotográficas.";
+import { SITE_TITLE as TITLE, SITE_DESCRIPTION as DESC, siteSchema } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -23,8 +20,14 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESC },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
+      { property: "og:url", content: "/" },
+      { name: "robots", content: "index, follow, max-image-preview:large" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESC },
     ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(siteSchema) }],
   }),
   component: Index,
 });
@@ -33,6 +36,7 @@ function Index() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0a0a" }}>
       <Navbar />
+      <main id="conteudo">
       <Hero />
       <About />
       <Models />
@@ -40,6 +44,7 @@ function Index() {
       <Services />
       <Testimonials />
       <Contact />
+      </main>
       <Footer />
       <WhatsAppButton />
     </div>

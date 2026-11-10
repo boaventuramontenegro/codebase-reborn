@@ -28,7 +28,7 @@ export function Navbar() {
   };
 
   return (
-    <nav
+    <nav aria-label="Navegação principal"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? "bg-black/95 backdrop-blur-md py-3" : "bg-transparent py-6"
       }`}
@@ -64,19 +64,23 @@ export function Navbar() {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-10">
           {links.map((link) => (
-            <button
+            <a
               key={link}
-              onClick={() => scrollTo(link)}
+              href={`#${link === "Casting" ? "modelos" : link.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+              onClick={(e) => { e.preventDefault(); scrollTo(link); }}
               className="text-white/70 hover:text-[#C9A96E] transition-colors duration-300 cursor-pointer border-none bg-transparent"
               style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
             >
               {link}
-            </button>
+            </a>
           ))}
         </div>
 
         {/* Mobile Toggle */}
         <button
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={isOpen}
+          aria-controls="menu-mobile"
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden text-white p-2 bg-transparent border-none cursor-pointer"
         >
@@ -86,16 +90,17 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/98 px-6 py-8 flex flex-col gap-6">
+        <div id="menu-mobile" className="md:hidden bg-black/98 px-6 py-8 flex flex-col gap-6">
           {links.map((link) => (
-            <button
+            <a
               key={link}
-              onClick={() => scrollTo(link)}
+              href={`#${link === "Casting" ? "modelos" : link.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+              onClick={(e) => { e.preventDefault(); scrollTo(link); }}
               className="text-white/80 hover:text-[#C9A96E] transition-colors text-left bg-transparent border-none cursor-pointer"
               style={{ fontSize: "0.85rem", letterSpacing: "0.2em", textTransform: "uppercase" }}
             >
               {link}
-            </button>
+            </a>
           ))}
         </div>
       )}

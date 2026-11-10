@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import './DriftWall.css';
+import { optimizedPhoto } from '@/lib/media';
 
 const DEFAULT_ITEMS = [];
 
@@ -266,7 +267,7 @@ const DriftWall = ({
     const inner = (
       <span className="drift-wall__inner">
         <img
-          src={item.image}
+          src={optimizedPhoto(item.image).src}
           alt={item.title ?? ''}
           loading="lazy"
           decoding="async"
@@ -294,7 +295,9 @@ const DriftWall = ({
       );
     }
     return (
-      <div key={id} tabIndex={0} role="button" aria-label={item.title ?? 'tile'} {...commonProps}>
+      <div key={id} tabIndex={0} role="button" aria-label={item.title ?? 'Fotografia'} onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleTileClick(item, e); }
+      }} {...commonProps}>
         {inner}
       </div>
     );
@@ -319,7 +322,7 @@ const DriftWall = ({
         }}
         onPointerLeave={handlePointerLeaveWall}
         role="group"
-        aria-label="Drifting wall of tiles"
+        aria-label="Galeria de produções fotográficas Her Concept"
       >
         <div ref={planeRef} className="drift-wall__plane">
           {columnItems.map((col, c) => {
@@ -375,7 +378,10 @@ const DriftWall = ({
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={lightboxItem.image}
+              src={optimizedPhoto(lightboxItem.image).full}
+              decoding="async"
+              width={optimizedPhoto(lightboxItem.image).width}
+              height={optimizedPhoto(lightboxItem.image).height}
               alt={lightboxItem.title || 'Fotografia Galeria Her Concept'}
               className="max-w-[92vw] max-h-[80vh] sm:max-h-[85vh] w-auto h-auto object-contain rounded-xl shadow-2xl border border-[#C9A96E]/30 bg-black/50"
             />
