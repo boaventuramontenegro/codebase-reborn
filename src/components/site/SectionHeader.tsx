@@ -87,7 +87,7 @@ export function ScrollReveal({
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
       }}
-      className={`transition-all cubic-bezier(0.16, 1, 0.3, 1) transform will-change-transform ${getTransformClass()} ${className}`}
+      className={`scroll-reveal transition-all cubic-bezier(0.16, 1, 0.3, 1) transform will-change-transform ${getTransformClass()} ${className}`}
     >
       {children}
     </div>
