@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FadeInHeader, ScrollReveal } from "./SectionHeader";
+import { optimizedPhoto } from "@/lib/media";
 
 const teamPhotoImg = "/assets/aistudio/file_000000003dbc820ea198ec33619911d3_f0babb44.png";
 
@@ -190,7 +191,7 @@ export function About() {
               className="relative z-10 overflow-hidden rounded-2xl border border-white/10 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95)] bg-[#121212] cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-[#C9A96E]"
             >
               <img
-                src={teamPhotoImg}
+                src={optimizedPhoto(teamPhotoImg).src}
                 alt="Equipe oficial Her Concept Model Agency"
                 loading="lazy"
                 decoding="async"

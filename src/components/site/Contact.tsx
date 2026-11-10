@@ -149,13 +149,16 @@ export function Contact() {
                 {/* Row 1: Nome Completo (Obrigatório) & Telefone / WhatsApp (Opcional) */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label
+                    <label htmlFor="contact-name"
                       className="text-white/80 block mb-2 font-medium"
                       style={{ fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
                     >
                       Nome Completo *
                     </label>
                     <input
+                      id="contact-name"
+                      name="name"
+                      autoComplete="name"
                       type="text"
                       required
                       value={form.name}
@@ -167,13 +170,16 @@ export function Contact() {
                   </div>
 
                   <div>
-                    <label
+                    <label htmlFor="contact-phone"
                       className="text-white/80 block mb-2 font-medium"
                       style={{ fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
                     >
                       Telefone / WhatsApp <span className="text-white/40 normal-case font-normal">(Opcional)</span>
                     </label>
                     <input
+                      id="contact-phone"
+                      name="phone"
+                      autoComplete="tel"
                       type="tel"
                       value={form.phone}
                       onChange={(e) => setForm({ ...form, phone: e.target.value })}
@@ -186,13 +192,16 @@ export function Contact() {
 
                 {/* Row 2: E-mail (Opcional) */}
                 <div>
-                  <label
+                  <label htmlFor="contact-email"
                     className="text-white/80 block mb-2 font-medium"
                     style={{ fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
                   >
                     E-mail <span className="text-white/40 normal-case font-normal">(Opcional)</span>
                   </label>
                   <input
+                      id="contact-email"
+                      name="email"
+                      autoComplete="email"
                     type="email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -205,7 +214,7 @@ export function Contact() {
                 {/* Row 3: Serviços de Interesse — Seleção Múltipla com preenchimento em texto */}
                 <div ref={servicesRef} className="relative">
                   <div className="flex items-center justify-between mb-2">
-                    <label
+                    <label htmlFor="contact-services"
                       className="text-white/80 block font-medium"
                       style={{ fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
                     >
@@ -221,6 +230,9 @@ export function Contact() {
                   {/* Campo de texto dos serviços */}
                   <div className="relative">
                     <input
+                      id="contact-services"
+                      name="services"
+                      autoComplete="off"
                       type="text"
                       value={form.services}
                       onChange={(e) => handleManualServicesChange(e.target.value)}
@@ -257,6 +269,10 @@ export function Contact() {
                           return (
                             <div
                               key={service}
+                              role="checkbox"
+                              tabIndex={0}
+                              aria-checked={isChecked}
+                              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleService(service); } }}
                               onClick={() => toggleService(service)}
                               className={`flex items-center justify-between px-3.5 py-3 rounded-lg cursor-pointer transition-all ${
                                 isChecked
@@ -304,13 +320,15 @@ export function Contact() {
 
                 {/* Row 4: Observação (Opcional) */}
                 <div>
-                  <label
+                  <label htmlFor="contact-message"
                     className="text-white/80 block mb-2 font-medium"
                     style={{ fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase" }}
                   >
                     Observação <span className="text-white/40 normal-case font-normal">(Opcional)</span>
                   </label>
                   <textarea
+                      id="contact-message"
+                      name="message"
                     rows={4}
                     value={form.message}
                     onChange={(e) => setForm({ ...form, message: e.target.value })}

@@ -85,12 +85,13 @@ export function Footer() {
             <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2.5 text-sm">
               {["Home", "Sobre", "Casting", "Galeria", "Serviços", "FAQ", "Contato"].map((item) => (
                 <li key={item}>
-                  <button
-                    onClick={() => scrollTo(item)}
+                  <a
+                    href={`#${item === "Casting" ? "modelos" : item.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`}
+                    onClick={(e) => { e.preventDefault(); scrollTo(item); }}
                     className="text-white/70 hover:text-[#C9A96E] transition-colors bg-transparent border-none cursor-pointer p-0 text-left text-[14px]"
                   >
                     {item}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

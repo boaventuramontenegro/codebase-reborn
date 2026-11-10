@@ -1,4 +1,5 @@
 import { ChevronDown } from "lucide-react";
+import { optimizedPhoto } from "@/lib/media";
 
 const heroImg = "/assets/hero_studio_backstage.jpg";
 
@@ -12,11 +13,13 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={heroImg}
+          src={optimizedPhoto(heroImg).full}
+          srcSet={optimizedPhoto(heroImg).srcSet}
+          sizes="100vw"
           alt="Her Concept Model Agency - Estúdio de Fotografia e Produção de Moda em Piracicaba SP"
           loading="eager"
           fetchPriority="high"
-          decoding="sync"
+          decoding="async"
           width={1920}
           height={1080}
           className="w-full h-full object-cover object-center select-none"
