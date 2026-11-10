@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './StackedDeck.css';
-import { optimizedPhoto } from '@/lib/media';
+import { Photo } from './Photo';
 
 export interface ModelTalent {
   id: string;
@@ -250,8 +250,8 @@ export function StackedDeck() {
               <div className="stacked-card__inner">
                 {/* Photo */}
                 <div className="stacked-card__image-wrap">
-                  <img
-                    src={optimizedPhoto(model.image).src}
+                  <Photo
+                    source={model.image}
                     alt={`Retrato de modelo do casting Her Concept em Piracicaba — fotografia ${i + 1}`}
                     className="stacked-card__image"
                     loading="lazy"

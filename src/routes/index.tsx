@@ -10,6 +10,7 @@ import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppButton } from "@/components/site/WhatsAppButton";
 import { SITE_TITLE as TITLE, SITE_DESCRIPTION as DESC, siteSchema } from "@/lib/seo";
+import { OpeningLoader } from "@/components/site/OpeningLoader";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,6 +37,7 @@ function Index() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#0a0a0a" }}>
       <Navbar />
+      <OpeningLoader />
       <main id="conteudo">
       <Hero />
       <About />
