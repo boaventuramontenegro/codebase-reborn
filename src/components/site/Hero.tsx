@@ -15,7 +15,7 @@ export function Hero() {
           src={heroImg}
           alt="Her Concept Model Agency - Estúdio de Fotografia e Produção de Moda em Piracicaba SP"
           loading="eager"
-          {...{ fetchpriority: "high" }}
+          fetchPriority="high"
           decoding="sync"
           width={1920}
           height={1080}

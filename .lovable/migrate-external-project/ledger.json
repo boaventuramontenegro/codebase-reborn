@@ -1,0 +1,5 @@
+[{"capability":"site pages & sections","source":"archive","outcome":"migrate","status":"verified","next_action":null},
+{"capability":"photos","source":"public/assets","outcome":"migrate","status":"verified","next_action":null},
+{"capability":"contact form via WhatsApp","source":"Contact.tsx","outcome":"preserve","status":"migrated","next_action":null},
+{"capability":"Google Analytics G-H09XBYVHP1","source":"index.html","outcome":"preserve","status":"migrated","next_action":null},
+{"capability":"database/auth/AI","source":"none used in code","outcome":"absent","status":"verified","next_action":null}]
